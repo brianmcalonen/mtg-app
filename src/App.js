@@ -16,12 +16,20 @@ class Card extends Component {
       .then(data => this.setState({ data: data.cards }));
   }
 
+
   render() {
-    console.log(this.state.data[0]);
+    const { data } = this.state;
 
     return (
-      <div>{this.state.data[0]}</div>
-    )
+      <ul>
+        {data.map(data =>
+          <li key={data.id}>
+            <div>{data.name}</div>
+            <img src={data.imageUrl} />
+          </li>
+        )}
+      </ul>
+    );
   }
 }
 
