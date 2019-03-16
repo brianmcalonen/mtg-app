@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import DeckList from './components/DeckList';
+import SearchCard from './components/SearchCard';
 
 class App extends Component {
   constructor(props) {
@@ -7,7 +9,8 @@ class App extends Component {
 
     this.state = {
       data: [],
-      inputValue: ""
+      inputValue: "",
+      cardList: []
     };
 
     // This binding is necessary to make `this` work in the callback
@@ -28,7 +31,6 @@ class App extends Component {
     event.preventDefault();
 
     this.setState({
-      // searchValue: this.state.inputValue,
       inputValue: ""
     });
 
@@ -49,11 +51,16 @@ class App extends Component {
     console.log(this.state.data[0].name);
     console.log(this.state.data[0].imageUrl);
 
-    // find the index of the card to be added
+    const card = {
+      name: this.state.data[0].name,
+      imageUrl: this.state.data[0].imageUrl,
+    }
+    
+    this.setState({
+      cardList: [...this.state.cardList, card]
+    })
 
-    // add index to each button
-
-    console.log(this.state.data)
+    console.log(this.state.cardList)
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////
@@ -73,58 +80,14 @@ class App extends Component {
             <div key={data.id}>
               <h1>{data.name}</h1>
               <img src={data.imageUrl} alt={data.name} />
-              <AddCard
-                addCard={this.addCard}
-              />
+              <button onClick={this.addCard}>Add Card</button>
             </div>
           )}
-          <DeckList />
+          <DeckList cardList={this.state.cardList}/>
         </div>
 
       </div>
     );
-  }
-}
-
-////////////////////////////////////////////////////////////////////////////////////////
-class SearchCard extends React.Component {
-  render() {
-    return (
-      <div>
-        <h3>Search Card:</h3>
-        <input
-          type="text"
-          value={this.props.inputValue}
-          onChange={this.props.handleChange} />
-        <button onClick={this.props.search}>
-          Enter
-          </button><br />
-      </div>
-    );
-  }
-};
-
-////////////////////////////////////////////////////////////////////////////////////////
-class AddCard extends React.Component {
-  render() {
-    return (
-      <div>
-        <button
-          onClick={this.props.addCard}
-        >Add Card</button>
-      </div>
-    )
-  }
-}
-
-////////////////////////////////////////////////////////////////////////////////////////
-class DeckList extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Deck List</h1>
-      </div>
-    )
   }
 }
 
