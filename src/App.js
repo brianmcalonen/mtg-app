@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import DeckList from './components/DeckList';
+import CardList from './components/CardList';
 import SearchCard from './components/SearchCard';
 
 class App extends Component {
@@ -10,7 +10,9 @@ class App extends Component {
     this.state = {
       data: [],
       inputValue: "",
-      cardList: []
+      currentCard: null,
+      cardList: [],
+      addedCard: null
     };
 
     // This binding is necessary to make `this` work in the callback
@@ -19,53 +21,37 @@ class App extends Component {
     this.addCard = this.addCard.bind(this);
   }
 
-  ////////////////////////////////////////////////////////////////////////////////////////
   handleChange(event) {
     this.setState({
       inputValue: event.target.value
     });
   }
 
-  ////////////////////////////////////////////////////////////////////////////////////////
   search(event) {
     event.preventDefault();
-
-    this.setState({
-      inputValue: ""
-    });
-
-    console.log(this.state.inputValue);
 
     fetch(`https://api.magicthegathering.io/v1/cards?name="${this.state.inputValue}"`)
       .then(response => response.json())
       .then(data => this.setState({ data: data.cards }));
 
+      this.setState({
+        inputValue: "",
+      });
   }
 
-  ////////////////////////////////////////////////////////////////////////////////////////
-  addCard(event) {
-
-    event.preventDefault();
-
-    console.log("card added")
-    console.log(this.state.data[0].name);
-    console.log(this.state.data[0].imageUrl);
-
-    const card = {
-      name: this.state.data[0].name,
-      imageUrl: this.state.data[0].imageUrl,
-    }
-    
+  addCard(data, index) {
+    console.log(index)
     this.setState({
-      cardList: [...this.state.cardList, card]
+      currentCard: data[index]
     })
-
     console.log(this.state.cardList)
+    console.log(this.state.currentCard)
+
   }
 
-  ////////////////////////////////////////////////////////////////////////////////////////
   render() {
     const { data } = this.state;
+    // const cards = this.state.cardList.map(i => <li>{i}</li>)
 
     return (
       <div>
@@ -76,14 +62,15 @@ class App extends Component {
         ></SearchCard>
 
         <div>
-          {data.map(data =>
-            <div key={data.id}>
+          {data.map((data, index) =>
+            <div key={data.id}  onClick={() => this.addCard(data, index)}>
               <h1>{data.name}</h1>
               <img src={data.imageUrl} alt={data.name} />
-              <button onClick={this.addCard}>Add Card</button>
             </div>
           )}
-          <DeckList cardList={this.state.cardList}/>
+          {/* <CardList cardList={this.state.cardList}/> */}
+          <h3>My Deck</h3>
+          <ul>{this.state.cardList.map(i => <li>{i}</li>)}</ul>
         </div>
 
       </div>
