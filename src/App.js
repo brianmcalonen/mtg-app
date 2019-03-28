@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import CardList from './components/CardList';
 import SearchCard from './components/SearchCard';
 
 class App extends Component {
@@ -11,14 +10,24 @@ class App extends Component {
       data: [],
       inputValue: "",
       currentCard: null,
-      cardList: [],
-      addedCard: null
+      deckList: []
     };
 
     // This binding is necessary to make `this` work in the callback
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
     this.addCard = this.addCard.bind(this);
+  }
+  addCard(data, index) {
+    console.log(index)
+    this.setState({
+      currentCard: this.state.data[index],
+      deckList: [...this.state.deckList, this.state.currentCard]
+    })
+    console.log(this.state.data[index])
+    console.log(this.state.deckList)
+
+
   }
 
   handleChange(event) {
@@ -37,16 +46,6 @@ class App extends Component {
       this.setState({
         inputValue: "",
       });
-  }
-
-  addCard(data, index) {
-    console.log(index)
-    this.setState({
-      currentCard: data[index]
-    })
-    console.log(this.state.cardList)
-    console.log(this.state.currentCard)
-
   }
 
   render() {
@@ -70,7 +69,7 @@ class App extends Component {
           )}
           {/* <CardList cardList={this.state.cardList}/> */}
           <h3>My Deck</h3>
-          <ul>{this.state.cardList.map(i => <li>{i}</li>)}</ul>
+          {/* <ul>{this.state.cardList.map(i => <li>{i}</li>)}</ul> */}
         </div>
 
       </div>
