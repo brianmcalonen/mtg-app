@@ -18,15 +18,14 @@ class App extends Component {
     this.search = this.search.bind(this);
     this.addCard = this.addCard.bind(this);
   }
+
   addCard(data, index) {
     console.log(index)
     this.setState({
       currentCard: this.state.data[index],
-      deckList: [...this.state.deckList, this.state.currentCard]
+      deckList: [...this.state.deckList, data]
     })
     console.log(this.state.data[index])
-    console.log(this.state.deckList)
-
 
   }
 
@@ -49,8 +48,7 @@ class App extends Component {
   }
 
   render() {
-    const { data } = this.state;
-    // const cards = this.state.cardList.map(i => <li>{i}</li>)
+    const { data, deckList } = this.state;
 
     return (
       <div>
@@ -67,10 +65,17 @@ class App extends Component {
               <img src={data.imageUrl} alt={data.name} />
             </div>
           )}
-          {/* <CardList cardList={this.state.cardList}/> */}
-          <h3>My Deck</h3>
-          {/* <ul>{this.state.cardList.map(i => <li>{i}</li>)}</ul> */}
         </div>
+
+        <h3>My Deck</h3>
+          <ul>
+            {deckList.map((data, index) => 
+                <div key={data.id}>
+                  <h1>{data.name}</h1>
+                  <img src={data.imageUrl} alt={data.name} />
+                </div>
+              )}  
+          </ul>
 
       </div>
     );
