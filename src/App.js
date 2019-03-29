@@ -50,34 +50,75 @@ class App extends Component {
   render() {
     const { data, deckList } = this.state;
 
+    let styles = {
+      display: "flex",
+      flexWrap: "wrap"    
+    }
+
+    let imgStyles = {
+      position: "relative",
+      margin: "10px",
+      float: "left",
+      width:  "223px",
+      height: "310px",
+      backgroundPosition: "50% 50%",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover"
+    }
+
+    let main = {
+      display: "flex",
+      alignItems: "flex-start",
+      flexWrap: "wrap"
+    }
+
+    let left = {
+      width: "33%",
+      height: "100vh",
+      backgroundColor: "cyan"
+    }
+
+    let right = {
+      width: "67%",
+      height: "100vh",
+      padding: "2rem",
+      backgroundColor: "grey"
+
+    }
+
     return (
-      <div>
-        <SearchCard
-          input={this.state.inputValue}
-          handleChange={this.handleChange}
-          search={this.search}
-        ></SearchCard>
+      <div style={main}>
+        <div style={left}>
 
-        <div>
-          {data.map((data, index) =>
-            <div key={data.id}  onClick={() => this.addCard(data, index)}>
-              <h1>{data.name}</h1>
-              <img src={data.imageUrl} alt={data.name} />
-            </div>
-          )}
         </div>
+        <div style={right}>
+          <SearchCard
+            input={this.state.inputValue}
+            handleChange={this.handleChange}
+            search={this.search}
+          ></SearchCard>
 
-        <h3>My Deck</h3>
-          <ul>
-            {deckList.map((data, index) => 
-                <div key={data.id}>
-                  <h1>{data.name}</h1>
-                  <img src={data.imageUrl} alt={data.name} />
-                </div>
-              )}  
-          </ul>
+          <p>Click card to add to Deck List</p>
+          <div style={styles}>
+            {data.map((data, index) =>
+              <div 
+                key={data.id}  onClick={() => this.addCard(data, index)}>
+                <img src={data.imageUrl} alt={data.name} style={imgStyles}/>
+              </div>
+            )}
+          </div>
 
-      </div>
+          <h1>My Deck</h1>
+            <ul style={styles}>
+              {deckList.map((data, index) => 
+                  <div key={data.id}>
+                    {/* <h4>{data.name}</h4> */}
+                    <img src={data.imageUrl} alt={data.name} style={imgStyles}/>
+                  </div>
+                )}  
+            </ul>
+          </div>
+        </div>
     );
   }
 }
