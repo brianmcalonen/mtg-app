@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import SearchCard from './components/SearchCard';
+import SideList from './components/SideList';
 
 class App extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class App extends Component {
       data: [],
       inputValue: "",
       currentCard: null,
-      deckList: []
+      deckList: [],
+      sideList: []
     };
 
     // This binding is necessary to make `this` work in the callback
@@ -23,10 +25,11 @@ class App extends Component {
     console.log(index)
     this.setState({
       currentCard: this.state.data[index],
-      deckList: [...this.state.deckList, data]
+      deckList: [...this.state.deckList, data],
+      sideList: [...this.state.sideList, {name: this.state.data[index].name, number: 1}]
     })
     console.log(this.state.data[index])
-
+    
   }
 
   handleChange(event) {
@@ -57,7 +60,7 @@ class App extends Component {
 
     let imgStyles = {
       position: "relative",
-      margin: "10px",
+      margin: "1rem",
       float: "left",
       width:  "223px",
       height: "310px",
@@ -68,28 +71,26 @@ class App extends Component {
 
     let main = {
       display: "flex",
-      alignItems: "flex-start",
+      height: "100vh",
+      alignItems: "stretch",
       flexWrap: "wrap"
     }
 
     let left = {
-      width: "33%",
-      height: "100vh",
+      width: "30%",
       backgroundColor: "cyan"
     }
 
     let right = {
-      width: "67%",
-      height: "100vh",
+      width: "70%",
       padding: "2rem",
-      backgroundColor: "grey"
 
     }
 
     return (
       <div style={main}>
         <div style={left}>
-
+          <SideList sideList={this.state.sideList}/>
         </div>
         <div style={right}>
           <SearchCard
