@@ -25,7 +25,7 @@ class SideList extends React.Component {
                             <div style={itemStyle}>
                                 <div>{item.name}</div>
                                 <div style={counterStyle}>
-                                    <button>-</button>
+                                    <button onClick={() => this.props.decrementCard(item, index)}>-</button>
                                     <div>{item.number}</div>
                                     <button onClick={() => this.props.incrementCard(item, index)}>+</button>
                                 </div>

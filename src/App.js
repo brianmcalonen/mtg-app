@@ -19,19 +19,28 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
     this.addCard = this.addCard.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
     this.incrementCard = this.incrementCard.bind(this);
+    this.decrementCard = this.decrementCard.bind(this);
   }
 
   addCard(data, index) {
-    console.log(index)
     this.setState({
       currentCard: this.state.data[index],
       deckList: [...this.state.deckList, data],
       sideList: [...this.state.sideList, {name: this.state.data[index].name, number: 1}],
       data: []
+    })    
+  }
+
+  deleteCard(item, index) {
+    let sideListCopy = [...this.state.sideList];
+
+    delete sideListCopy[index];
+
+    this.setState({
+      sideList: sideListCopy
     })
-    console.log(this.state.data[index])
-    
   }
 
   incrementCard(item, index) {
@@ -41,6 +50,21 @@ class App extends Component {
 
     deckListCopy[index].number = newNumber;
 
+    this.setState({
+      deckList: deckListCopy
+    })
+  }
+
+  decrementCard(item, index) {
+    let newNumber = item.number--;
+
+    let deckListCopy = JSON.parse(JSON.stringify(this.state.deckList));
+
+    deckListCopy[index].number = newNumber;
+
+    if(newNumber <= 1) {
+      this.deleteCard(item, index);
+    }
     this.setState({
       deckList: deckListCopy
     })
@@ -108,7 +132,9 @@ class App extends Component {
         <div style={left}>
           <SideList 
             sideList={this.state.sideList}
-            incrementCard={this.incrementCard}/>
+            incrementCard={this.incrementCard}
+            decrementCard={this.decrementCard}
+            deleteCard={this.deleteCard}/>
         </div>
         <div style={right}>
           <SearchCard
