@@ -26,7 +26,8 @@ class App extends Component {
     this.setState({
       currentCard: this.state.data[index],
       deckList: [...this.state.deckList, data],
-      sideList: [...this.state.sideList, {name: this.state.data[index].name, number: 1}]
+      sideList: [...this.state.sideList, {name: this.state.data[index].name, number: 1}],
+      data: []
     })
     console.log(this.state.data[index])
     
@@ -102,10 +103,10 @@ class App extends Component {
           <p>Click card to add to Deck List</p>
           <div style={styles}>
             {data.map((data, index) =>
-              <div 
+              data.imageUrl ? (<div 
                 key={data.id}  onClick={() => this.addCard(data, index)}>
                 <img src={data.imageUrl} alt={data.name} style={imgStyles}/>
-              </div>
+              </div>) : <div></div>
             )}
           </div>
 
