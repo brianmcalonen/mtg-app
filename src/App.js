@@ -19,6 +19,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
     this.addCard = this.addCard.bind(this);
+    this.incrementCard = this.incrementCard.bind(this);
   }
 
   addCard(data, index) {
@@ -31,6 +32,15 @@ class App extends Component {
     })
     console.log(this.state.data[index])
     
+  }
+
+  incrementCard(event, index) {
+    event.preventDefault();
+
+    console.log("increment")
+    console.log(this.state.sideList[0].number)
+
+    // get specific index of obj to be updated
   }
 
   handleChange(event) {
@@ -91,7 +101,9 @@ class App extends Component {
     return (
       <div style={main}>
         <div style={left}>
-          <SideList sideList={this.state.sideList}/>
+          <SideList 
+            sideList={this.state.sideList}
+            incrementCard={this.incrementCard}/>
         </div>
         <div style={right}>
           <SearchCard
@@ -114,7 +126,6 @@ class App extends Component {
             <ul style={styles}>
               {deckList.map((data, index) => 
                   <div key={data.id}>
-                    {/* <h4>{data.name}</h4> */}
                     <img src={data.imageUrl} alt={data.name} style={imgStyles}/>
                   </div>
                 )}  
