@@ -19,7 +19,7 @@ class SideList extends React.Component {
         <div style={sideStyle}>
             <h1>Side List</h1>
             <ul className="list-group">
-                {this.props.sideList.map(item => {
+                {this.props.sideList.map((item, index) => {
                     return (
                         <li className="list-group-item">
                             <div style={itemStyle}>
@@ -27,7 +27,7 @@ class SideList extends React.Component {
                                 <div style={counterStyle}>
                                     <button>-</button>
                                     <div>{item.number}</div>
-                                    <button onClick={this.props.incrementCard}>+</button>
+                                    <button onClick={() => this.props.incrementCard(item, index)}>+</button>
                                 </div>
                             </div>
                         </li>

@@ -34,14 +34,19 @@ class App extends Component {
     
   }
 
-  incrementCard(event, index) {
-    event.preventDefault();
+  incrementCard(item, index) {
+    let newNumber = item.number++;
 
-    console.log("increment")
-    console.log(this.state.sideList[0].number)
+    let deckListCopy = JSON.parse(JSON.stringify(this.state.deckList));
 
-    // get specific index of obj to be updated
+    deckListCopy[index].number = newNumber;
+
+    this.setState({
+      deckList: deckListCopy
+    })
   }
+
+  
 
   handleChange(event) {
     this.setState({
