@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import SearchCard from './components/SearchCard';
-import SideList from './components/SideList';
+import DeckList from './components/DeckList';
+import Navbar from './components/Navbar';
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
     this.addCard = this.addCard.bind(this);
-    this.deleteCard = this.deleteCard.bind(this);
+    // this.deleteCard = this.deleteCard.bind(this);
     this.incrementCard = this.incrementCard.bind(this);
     this.decrementCard = this.decrementCard.bind(this);
   }
@@ -31,16 +32,6 @@ class App extends Component {
       sideList: [...this.state.sideList, {name: this.state.data[index].name, number: 1}],
       data: []
     })    
-  }
-
-  deleteCard(item, index) {
-    let sideListCopy = [...this.state.sideList];
-
-    delete sideListCopy[index];
-
-    this.setState({
-      sideList: sideListCopy
-    })
   }
 
   incrementCard(item, index) {
@@ -62,15 +53,24 @@ class App extends Component {
 
     deckListCopy[index].number = newNumber;
 
-    if(newNumber <= 1) {
-      this.deleteCard(item, index);
-    }
     this.setState({
       deckList: deckListCopy
     })
+
+    console.log(this.state.deckList)
   }
 
-  
+  // delete card from both sideList && deckList
+
+  // deleteCard(item, index) {
+  //   let sideListCopy = [...this.state.deckList];
+
+  //   delete sideListCopy[index];
+
+  //   this.setState({
+  //     sideList: sideListCopy
+  //   })
+  // }
 
   handleChange(event) {
     this.setState({
@@ -95,12 +95,13 @@ class App extends Component {
 
     let styles = {
       display: "flex",
-      flexWrap: "wrap"    
+      flexWrap: "wrap",
+      paddingLeft: "0"    
     }
 
     let imgStyles = {
       position: "relative",
-      margin: "1rem",
+      margin: ".5rem",
       float: "left",
       width:  "223px",
       height: "310px",
@@ -113,24 +114,30 @@ class App extends Component {
       display: "flex",
       height: "100vh",
       alignItems: "stretch",
-      flexWrap: "wrap"
+      flexWrap: "wrap",
+      fontFamily: "Beleren",
     }
 
     let left = {
-      width: "30%",
-      backgroundColor: "cyan"
+      width: "23%",
+      backgroundColor: "#242124",
+      color: "white",
+      fontWeight: "900"
+
     }
 
     let right = {
-      width: "70%",
-      padding: "2rem",
+      width: "77%",
+      padding: ".5rem",
 
     }
 
     return (
-      <div style={main}>
+      <div>
+        <Navbar/>
+        <div style={main}>
         <div style={left}>
-          <SideList 
+          <DeckList 
             sideList={this.state.sideList}
             incrementCard={this.incrementCard}
             decrementCard={this.decrementCard}
@@ -153,7 +160,7 @@ class App extends Component {
             )}
           </div>
 
-          <h1>My Deck</h1>
+          <h2>Deck List</h2>
             <ul style={styles}>
               {deckList.map((data, index) => 
                   <div key={data.id}>
@@ -163,6 +170,8 @@ class App extends Component {
             </ul>
           </div>
         </div>
+      </div>
+
     );
   }
 }

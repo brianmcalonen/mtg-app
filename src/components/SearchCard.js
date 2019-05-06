@@ -4,7 +4,7 @@ class SearchCard extends React.Component {
     render() {
         return (
         <div>
-            <h1>Search Card:</h1>
+            <h2>Search Card:</h2>
             <input
                 type="text"
                 value={this.props.inputValue}
