@@ -14,6 +14,11 @@ class SearchCard extends React.Component {
                 className="btn btn-primary">
             Enter
             </button>
+            <button 
+                onClick={this.props.random}
+                className="btn btn-primary">
+            Random Card
+            </button>
             <br />
         </div>
         );

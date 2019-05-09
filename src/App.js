@@ -16,7 +16,6 @@ class App extends Component {
       sideList: []
     };
 
-    // This binding is necessary to make `this` work in the callback
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
     this.addCard = this.addCard.bind(this);
@@ -60,22 +59,25 @@ class App extends Component {
     console.log(this.state.deckList)
   }
 
-  // delete card from both sideList && deckList
-
-  // deleteCard(item, index) {
-  //   let sideListCopy = [...this.state.deckList];
-
-  //   delete sideListCopy[index];
-
-  //   this.setState({
-  //     sideList: sideListCopy
-  //   })
-  // }
-
   handleChange(event) {
     this.setState({
       inputValue: event.target.value
     });
+  }
+
+  random(event) {
+    event.preventDefault();
+
+    let random = Math.floor(Math.random() * 4980);  
+    
+    fetch(`https://api.magicthegathering.io/v1/cards/${random}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        console.log(this.state.data)
+      });
+
+
   }
 
   search(event) {
@@ -148,6 +150,7 @@ class App extends Component {
             input={this.state.inputValue}
             handleChange={this.handleChange}
             search={this.search}
+            random={this.random}
           ></SearchCard>
 
           <p>Click card to add to Deck List</p>
