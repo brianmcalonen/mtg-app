@@ -15,7 +15,8 @@ class App extends Component {
       inputValue: "",
       currentCard: null,
       deckList: [],
-      sideList: []
+      sideList: [],
+      loading: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -84,9 +85,16 @@ class App extends Component {
 
     fetch(`https://api.magicthegathering.io/v1/cards?name="${this.state.inputValue}"`)
       .then(response => response.json())
-      .then(data => this.setState({ data: data.cards }));
+      .then(data => this.setState({ 
+        data: data.cards,
+        loading: true   
+      }))
+      .then(() => this.setState({ loading: false }));
 
-    console.log('clear input');
+    this.state.loading ? 
+      this.setState({ loading: false }) : 
+      this.setState({ loading: true })
+
   }
 
   render() {
@@ -128,7 +136,11 @@ class App extends Component {
     let right = {
       width: "77%",
       padding: ".5rem",
+    }
 
+    let spinnerStyle = {
+      display: "flex",
+      justifyContent: "center"
     }
 
     return (
@@ -152,7 +164,13 @@ class App extends Component {
 
           <p>Click card to add to Deck List</p>
 
-          <Spinner animation="border" variant="primary" />
+          
+          {this.state.loading ? 
+            <Spinner 
+              animation="border"
+              style={spinnerStyle}
+              variant="primary" /> : 
+            <div></div>}
 
           <div style={styles}>
             {data.map((data, index) =>
