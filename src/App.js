@@ -19,7 +19,6 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
     this.addCard = this.addCard.bind(this);
-    // this.deleteCard = this.deleteCard.bind(this);
     this.incrementCard = this.incrementCard.bind(this);
     this.decrementCard = this.decrementCard.bind(this);
   }
@@ -69,14 +68,17 @@ class App extends Component {
     event.preventDefault();
 
     let random = Math.floor(Math.random() * 4980);  
+
+    console.log(random)
     
     fetch(`https://api.magicthegathering.io/v1/cards/${random}`)
       .then(response => response.json())
-      .then(data => {
+      .then(data => 
         console.log(data)
-        console.log(this.state.data)
-      });
-
+        // console.log(data.card)
+        // addCard(data, 0)
+        // this.setState({ data: data.card })
+        );
 
   }
 
