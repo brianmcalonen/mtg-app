@@ -57,11 +57,7 @@ class DeckList extends React.Component {
                     return (
                         <li style={myStyle}>
                             <div style={itemStyle}>
-                                {/* <div style={counterStyle}> */}
-                                    {/* <button onClick={() => this.props.decrementCard(item, index)}>-</button> */}
-                                    {/* <div>{item.number}</div> */}
                                     <button style={btnStyle} onClick={() => this.props.incrementCard(item, index)}>{item.number}</button>
-                                {/* </div> */}
                                 <div style={nameStyle}onClick={() => this.props.decrementCard(item, index)}>{item.name}</div>
 
                             </div>

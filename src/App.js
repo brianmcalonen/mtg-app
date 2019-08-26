@@ -3,6 +3,8 @@ import './App.css';
 import SearchCard from './components/SearchCard';
 import DeckList from './components/DeckList';
 import Navbar from './components/Navbar';
+import Spinner from 'react-bootstrap/Spinner';
+
 
 class App extends Component {
   constructor(props) {
@@ -73,12 +75,7 @@ class App extends Component {
     
     fetch(`https://api.magicthegathering.io/v1/cards/${random}`)
       .then(response => response.json())
-      .then(data => 
-        console.log(data)
-        // console.log(data.card)
-        // addCard(data, 0)
-        // this.setState({ data: data.card })
-        );
+      .then(data => console.log(data));
 
   }
 
@@ -89,9 +86,7 @@ class App extends Component {
       .then(response => response.json())
       .then(data => this.setState({ data: data.cards }));
 
-      this.setState({
-        inputValue: "",
-      });
+    console.log('clear input');
   }
 
   render() {
@@ -156,6 +151,9 @@ class App extends Component {
           ></SearchCard>
 
           <p>Click card to add to Deck List</p>
+
+          <Spinner animation="border" variant="primary" />
+
           <div style={styles}>
             {data.map((data, index) =>
               data.imageUrl ? (<div 

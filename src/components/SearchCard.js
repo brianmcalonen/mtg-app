@@ -7,6 +7,7 @@ class SearchCard extends React.Component {
             <h2>Search Card:</h2>
             <input
                 type="text"
+                placeholder="Search card by name"
                 value={this.props.inputValue}
                 onChange={this.props.handleChange} />
             <button 
@@ -14,11 +15,11 @@ class SearchCard extends React.Component {
                 className="btn btn-primary">
             Enter
             </button>
-            <button 
+            {/* <button 
                 onClick={this.props.random}
                 className="btn btn-primary">
             Random Card
-            </button>
+            </button> */}
             <br />
         </div>
         );
