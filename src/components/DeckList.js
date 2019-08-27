@@ -28,12 +28,12 @@ class DeckList extends React.Component {
             height: "100%",
             margin: "0",
             borderRadius: "20px",
-            width: "3.5rem",
+            width: "4rem",
             textAlign: "center",
             color: "black",
             fontWeight: "bold",
             justifyContent: "center",
-            border: "2.5px solid lightgrey"
+            border: "2.5px solid grey"
         }
 
         let nameStyle = {

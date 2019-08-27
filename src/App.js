@@ -31,7 +31,8 @@ class App extends Component {
       currentCard: this.state.data[index],
       deckList: [...this.state.deckList, data],
       sideList: [...this.state.sideList, {name: this.state.data[index].name, number: 1}],
-      data: []
+      data: [],
+      inputValue: ""
     })    
   }
 
@@ -58,7 +59,23 @@ class App extends Component {
       deckList: deckListCopy
     })
 
-    console.log(this.state.deckList)
+    // Delete card if number is less than zero
+    if(newNumber <= 1) {
+      console.log(newNumber)
+
+      let newNew = [...this.state.deckList]
+
+      console.log(newNew)
+
+      newNew.splice(index);
+
+      console.log(newNew)
+
+      this.setState({
+        deckList: newNew,
+        sideList: newNew
+      })
+    }
   }
 
   handleChange(event) {
@@ -163,7 +180,6 @@ class App extends Component {
           ></SearchCard>
 
           <p>Click card to add to Deck List</p>
-
           
           {this.state.loading ? 
             <Spinner 
