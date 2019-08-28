@@ -160,6 +160,10 @@ class App extends Component {
       justifyContent: "center"
     }
 
+    let spinStyle = {
+      marginTop: "30px"
+    }
+
     return (
       <div>
         <Navbar/>
@@ -178,17 +182,18 @@ class App extends Component {
             search={this.search}
             random={this.random}
           ></SearchCard>
-
-          <p>Click card to add to Deck List</p>
           
-          {this.state.loading ? 
-            <Spinner 
-              animation="border"
-              style={spinnerStyle}
-              variant="primary" /> : 
-            <div></div>}
+          <div style={spinnerStyle}>
+            {this.state.loading ? 
+              <Spinner 
+                animation="border"
+                style={spinStyle}
+                variant="primary" /> : 
+              <div></div>}
+          </div>
 
           <div style={styles}>
+
             {data.map((data, index) =>
               data.imageUrl ? (<div 
                 key={data.id}  onClick={() => this.addCard(data, index)}>
@@ -197,7 +202,7 @@ class App extends Component {
             )}
           </div>
 
-          <h2>Deck List</h2>
+          {deckList.length > 0 ? <h2>Deck List</h2> : ""}
             <ul style={styles}>
               {deckList.map((data, index) => 
                   <div key={data.id}>

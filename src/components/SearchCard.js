@@ -1,11 +1,25 @@
 import React from "react"
 
 class SearchCard extends React.Component {
+
     render() {
+        let containerStyle = {
+            display: "flex"
+        }
+
+        let searchBarStyle = {
+            width: "80%",
+            borderRadius: "25px",
+            border: "1px ridge grey",
+            backgroundColor: "#DCDCDC",
+            outline: "none",
+            textAlign: "center"
+        }
+
         return (
-        <div>
-            <h2>Search Card:</h2>
+        <div style={containerStyle}>
             <input
+                style={searchBarStyle}
                 type="text"
                 placeholder="Search card by name"
                 value={this.props.inputValue}
@@ -13,7 +27,7 @@ class SearchCard extends React.Component {
             <button 
                 onClick={this.props.search}
                 className="btn btn-primary">
-            Enter
+                Search
             </button>
             {/* <button 
                 onClick={this.props.random}
