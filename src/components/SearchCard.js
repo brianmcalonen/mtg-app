@@ -8,12 +8,11 @@ class SearchCard extends React.Component {
         }
 
         let searchBarStyle = {
-            width: "80%",
-            borderRadius: "25px",
-            border: "1px ridge grey",
-            backgroundColor: "#DCDCDC",
-            outline: "none",
-            textAlign: "center"
+            padding: "20px",
+            height: "20px",
+            width: "500px",
+            border: "1px solid #eaeaea",
+            outline: "none"
         }
 
         return (
@@ -21,7 +20,7 @@ class SearchCard extends React.Component {
             <input
                 style={searchBarStyle}
                 type="text"
-                placeholder="Search card by name"
+                placeholder="Search card by name (Mountain, Swamp, Plains, etc...)"
                 value={this.props.inputValue}
                 onChange={this.props.handleChange} />
             <button 

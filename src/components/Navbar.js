@@ -17,10 +17,10 @@ class Navbar extends React.Component {
         return (
             <nav style={navBorderStyle} className="navbar navbar-dark bg-dark justify-content-between">
                 <h1 style={navStyle} className="navbar-brand">Magic The Gathering - Deck Builder</h1>
-                <form className="form-inline">
+                {/* <form className="form-inline">
                 <button style={linkStyle} className="btn btn-primary my-2 my-sm-0" type="submit">Sign Up</button>
                 <button style={linkStyle} className="btn btn-primary my-2 my-sm-0" type="submit">Login</button>
-                </form>
+                </form> */}
             </nav>
         );
     }
