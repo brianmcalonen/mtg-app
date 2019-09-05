@@ -1,13 +1,13 @@
 {
   "main.css": "/mtg-app/static/css/main.1ec59914.chunk.css",
-  "main.js": "/mtg-app/static/js/main.d43a9b6d.chunk.js",
-  "main.js.map": "/mtg-app/static/js/main.d43a9b6d.chunk.js.map",
+  "main.js": "/mtg-app/static/js/main.f735c2d4.chunk.js",
+  "main.js.map": "/mtg-app/static/js/main.f735c2d4.chunk.js.map",
   "runtime~main.js": "/mtg-app/static/js/runtime~main.7d661eb2.js",
   "runtime~main.js.map": "/mtg-app/static/js/runtime~main.7d661eb2.js.map",
   "static/js/2.1451762b.chunk.js": "/mtg-app/static/js/2.1451762b.chunk.js",
   "static/js/2.1451762b.chunk.js.map": "/mtg-app/static/js/2.1451762b.chunk.js.map",
   "index.html": "/mtg-app/index.html",
-  "precache-manifest.60483d9ff24995f04fa428b72b082192.js": "/mtg-app/precache-manifest.60483d9ff24995f04fa428b72b082192.js",
+  "precache-manifest.b0d6df068ccb4b1620df3416c235b057.js": "/mtg-app/precache-manifest.b0d6df068ccb4b1620df3416c235b057.js",
   "service-worker.js": "/mtg-app/service-worker.js",
   "static/css/main.1ec59914.chunk.css.map": "/mtg-app/static/css/main.1ec59914.chunk.css.map"
 }
